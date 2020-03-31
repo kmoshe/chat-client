@@ -32,10 +32,10 @@ export default function ConversationList(props) {
         <Toolbar
           title="ניהול שיחות"
           leftItems={[
-            <ToolbarButton key="cog" icon="ion-ios-cog" />
+            <ToolbarButton key="cog" icon="cog" />
           ]}
           rightItems={[
-            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+            <ToolbarButton key="add" icon="plus-circle" />
           ]}
         />
         <ConversationSearch />

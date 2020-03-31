@@ -147,21 +147,21 @@ export default function MessageList(props) {
         <Toolbar
           title="Conversation Title"
           rightItems={[
-            <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
-            <ToolbarButton key="video" icon="ion-ios-videocam" />,
-            <ToolbarButton key="phone" icon="ion-ios-call" />
+            <ToolbarButton key="info" icon="info-circle" />,
+            <ToolbarButton key="video" icon="video" />,
+            <ToolbarButton key="phone" icon="phone" />
           ]}
         />
 
         <div className="message-list-container">{renderMessages()}</div>
 
         <Compose rightItems={[
-          <ToolbarButton key="photo" icon="ion-ios-camera" />,
-          <ToolbarButton key="image" icon="ion-ios-image" />,
-          <ToolbarButton key="audio" icon="ion-ios-mic" />,
-          <ToolbarButton key="money" icon="ion-ios-card" />,
-          <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
-          <ToolbarButton key="emoji" icon="ion-ios-happy" />
+          <ToolbarButton key="photo" icon="camera" />,
+          <ToolbarButton key="image" icon="image" />,
+          <ToolbarButton key="audio" icon="microphone" />,
+          <ToolbarButton key="money" icon="credit-card" />,
+          <ToolbarButton key="games" icon="gamepad" />,
+          <ToolbarButton key="emoji" icon="smile" />
         ]}/>
       </div>
     );
