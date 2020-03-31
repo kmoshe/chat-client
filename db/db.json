@@ -1,0 +1,34 @@
+{
+  "appointments": [
+    {
+      "id": 111111111,
+      "firstName": "גבי",
+      "lastName": "קשני",
+      "appointmentDateTime": "2020-02-02T08:00:00"
+    },
+    {
+      "id": 222222222,
+      "firstName": "משה",
+      "lastName": "קרקו",
+      "appointmentDateTime": "2020-02-02T08:10:00"
+    },
+    {
+      "id": 333333333,
+      "firstName": "נועה",
+      "lastName": "גאני",
+      "appointmentDateTime": "2020-02-02T08:20:00"
+    },
+    {
+      "id": 444444444,
+      "firstName": "טל",
+      "lastName": "לופו",
+      "appointmentDateTime": "2020-02-02T08:30:00"
+    },
+    {
+      "id": 555555555,
+      "firstName": "סתיו",
+      "lastName": "אברג'ל",
+      "appointmentDateTime": "2020-02-02T08:40:00"
+    }
+  ]
+}
