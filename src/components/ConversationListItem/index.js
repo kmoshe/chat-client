@@ -10,11 +10,12 @@ export default function ConversationListItem(props) {
     shave('.conversation-snippet', 30);
   })
 
-    const { connected, name, appointmentDateTime } = props.data;
-
+    const { connected, id, name, appointmentDateTime } = props.data;
+    const icon = connected ? "user-minus" : "user-plus";
     return (
       <div className="conversation-list-item">
-        <img className="conversation-photo" src={person_add_outline} alt="not connected" />
+
+        <ToolbarButton key={`${id}_connected`}  icon={icon}/>
           <div className="conversation-info">
           <h1 className="conversation-title">{ name }</h1>
           <p className="conversation-snippet"> שעת התור { appointmentDateTime }</p>
