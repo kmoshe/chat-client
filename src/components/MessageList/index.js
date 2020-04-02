@@ -102,7 +102,7 @@ export default function MessageList(props) {
               <ToolbarButton key="info" icon="info-circle" />
           ]}
           rightItems={[
-              <img src={logo_mac} />
+              <img key="maccabi_logo" src={logo_mac} />
 
 
           ]}

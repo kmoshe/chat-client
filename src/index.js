@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter} from "react-router-dom";
+import 'moment/locale/he';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -52,7 +53,6 @@ library.add(
     faUserMinus,
     faPaperPlane
 )
-
 ReactDOM.render(
     <BrowserRouter>
         <App />
