@@ -4,84 +4,26 @@ import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import Message from '../Message';
 import moment from 'moment';
-
+import socket from '../../services/socket.service';
 import './MessageList.css';
+import logo_mac from '../../assets/logo_mac.png';
 
-const MY_USER_ID = 'apple';
 
 export default function MessageList(props) {
-  const [messages, setMessages] = useState([])
+    const { user, messages} = props;
+    const MY_USER_ID = user.id;
+    const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    getMessages();
-  },[])
+    const addMessage = () => {
+        const msg = { id: 999, author: MY_USER_ID, message: message, timestamp: new Date().getTime() };
+        socket.emit('chat message', msg);
+    };
 
-  
-  const getMessages = () => {
-     let tempMessages = [
-        {
-          id: 1,
-          author: 'apple',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 2,
-          author: 'orange',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 3,
-          author: 'orange',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 4,
-          author: 'apple',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 5,
-          author: 'apple',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 6,
-          author: 'apple',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 7,
-          author: 'orange',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 8,
-          author: 'orange',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 9,
-          author: 'apple',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 10,
-          author: 'orange',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-      ]
-      setMessages([...messages, ...tempMessages])
-  }
+
+
+    const handleChange = (messageText) => setMessage(messageText);
+
+
 
   const renderMessages = () => {
     let i = 0;
@@ -139,23 +81,40 @@ export default function MessageList(props) {
       i += 1;
     }
 
+    // if( tempMessages &&  tempMessages.length > 0  ) {
+    //     tempMessages[i-1].scrollIntoView({
+    //         behavior: 'smooth',
+    //         block: 'start',
+    //     });
+    // }
+
     return tempMessages;
   }
 
     return(
       <div className="message-list">
         <Toolbar
-          title="Conversation Title"
+          title={ user.userType === 'doctor' ? "צ'אט עם חבר" : "צ'אט עם רופא" }
+          leftItems={[
+
+              <ToolbarButton key="video" icon="video" />,
+              <ToolbarButton key="phone" icon="phone" />,
+              <ToolbarButton key="info" icon="info-circle" />
+          ]}
           rightItems={[
-            <ToolbarButton key="info" icon="info-circle" />,
-            <ToolbarButton key="video" icon="video" />,
-            <ToolbarButton key="phone" icon="phone" />
+              <img src={logo_mac} />
+
+
           ]}
         />
 
         <div className="message-list-container">{renderMessages()}</div>
 
-        <Compose rightItems={[
+        <Compose
+            handleChange={handleChange}
+            leftItems={[
+            <ToolbarButton key="plane" icon="paper-plane" handleClick={addMessage} />,
+        ]} rightItems={[
           <ToolbarButton key="photo" icon="camera" />,
           <ToolbarButton key="image" icon="image" />,
           <ToolbarButton key="audio" icon="microphone" />,

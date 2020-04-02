@@ -1,34 +1,92 @@
 {
+  "doctor": [
+    {
+      "id": "999999999",
+      "firstName": "אלכס",
+      "lastName": "רזינסקיך",
+      "role": "1",
+      "facilityId": "11111"
+    },
+    {
+      "id": "888888888",
+      "firstName": "מגן",
+      "lastName": "ידיד",
+      "role": "1",
+      "facilityId": "22222"
+    }
+  ],
   "appointments": [
     {
-      "id": 111111111,
-      "firstName": "גבי",
-      "lastName": "קשני",
-      "appointmentDateTime": "2020-02-02T08:00:00"
+      "doctorId": "999999999",
+      "facilityId": "11111",
+      "role": "1",
+      "patient": {
+        "id": 111111111,
+        "firstName": "גבי",
+        "lastName": "קשני"
+      },
+      "appointmentDateTime": "2020-02-02T08:00:00",
+      "connected": true
     },
     {
-      "id": 222222222,
-      "firstName": "משה",
-      "lastName": "קרקו",
-      "appointmentDateTime": "2020-02-02T08:10:00"
+      "doctorId": "999999999",
+      "facilityId": "11111",
+      "role": "1",
+      "patient": {
+        "id": 222222222,
+        "firstName": "משה",
+        "lastName": "קרקו"
+      },
+      "appointmentDateTime": "2020-02-02T08:10:00",
+      "connected": false
     },
     {
-      "id": 333333333,
-      "firstName": "נועה",
-      "lastName": "גאני",
-      "appointmentDateTime": "2020-02-02T08:20:00"
+      "doctorId": "999999999",
+      "facilityId": "11111",
+      "role": "1",
+      "patient": {
+        "id": 333333333,
+        "firstName": "נועה",
+        "lastName": "גאני"
+      },
+      "appointmentDateTime": "2020-02-02T08:20:00",
+      "connected": false
     },
     {
-      "id": 444444444,
-      "firstName": "טל",
-      "lastName": "לופו",
-      "appointmentDateTime": "2020-02-02T08:30:00"
+      "doctorId": "999999999",
+      "facilityId": "11111",
+      "role": "1",
+      "patient": {
+        "id": 444444444,
+        "firstName": "טל",
+        "lastName": "לופו"
+      },
+      "appointmentDateTime": "2020-02-02T08:30:00",
+      "connected": false
     },
     {
-      "id": 555555555,
-      "firstName": "סתיו",
-      "lastName": "אברג'ל",
-      "appointmentDateTime": "2020-02-02T08:40:00"
+      "doctorId": "999999999",
+      "facilityId": "11111",
+      "role": "1",
+      "patient": {
+        "id": 555555555,
+        "firstName": "סתיו",
+        "lastName": "אברג'ל"
+      },
+      "appointmentDateTime": "2020-02-02T08:40:00",
+      "connected": false
+    },
+    {
+      "doctorId": "888888888",
+      "facilityId": "22222",
+      "role": "1",
+      "patient": {
+        "id": 666666666,
+        "firstName": "עופר",
+        "lastName": "כהן"
+      },
+      "appointmentDateTime": "2020-02-02T08:00:00",
+      "connected": false
     }
   ]
 }

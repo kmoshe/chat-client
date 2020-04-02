@@ -9,28 +9,33 @@ import { getAppointments } from '../../services/api.service';
 import './ConversationList.css';
 
 export default function ConversationList(props) {
+    console.log('ConversationList');
   const [conversations, setConversations] = useState([]);
   useEffect(() => {
     getConversations();
   },[])
 
  const getConversations = async () => {
+
     const appointments = await getAppointments();
      let newConversations =  appointments.map(appointment => {
          console.log(appointment.appointmentDateTime);
          return {
-             connected: false,
-             name:  `${appointment.firstName} ${appointment.lastName}`,
-             appointmentDateTime: moment(appointment.appointmentDateTime).format('HH:MM')
+             id: appointment.patient.id,
+             connected: appointment.connected,
+             name:  `${appointment.patient.firstName} ${appointment.patient.lastName}`,
+             appointmentDateTime: moment(appointment.appointmentDateTime).format('HH:mm')
          };
      });
      setConversations([...conversations, ...newConversations])
   }
-
+    const { user } = props;
+    const messengerTypeTitle = user.userType == 'doctor' ? 'רופא' : 'חבר';
+    const title = ` ניהול שיחות`;
     return (
       <div className="conversation-list">
         <Toolbar
-          title="ניהול שיחות"
+          title={title}
           leftItems={[
             <ToolbarButton key="cog" icon="cog" />
           ]}
@@ -39,8 +44,7 @@ export default function ConversationList(props) {
           ]}
         />
         <ConversationSearch />
-        {
-          conversations.map(conversation =>
+        { user.userType === 'doctor' && conversations.map(conversation =>
             <ConversationListItem
               key={conversation.name}
               data={conversation}

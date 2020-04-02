@@ -4,10 +4,9 @@
   align-items: center;
   background: white;
   border-top: 1px solid #eeeef1;
-  position: absolute;
-  /*width: calc(100% - 20px);*/
+  position: fixed;
+  width: calc(100% - 350px);
   bottom: 0px;
-  left: 0px;
   right: 0px;
 }
 
@@ -27,6 +26,7 @@
   height: 40px;
   border-radius: 10px;
   text-align: right;
+  margin-left: 15px;
 }
 
 .compose-input::placeholder {

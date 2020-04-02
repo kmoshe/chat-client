@@ -1,10 +1,10 @@
 import React from 'react';
-import Messenger from '../Messenger';
+import ChatPage from "../../pages/chat/chat.component";
 
 export default function App() {
     return (
-      <div className="App">
-        <Messenger />
-      </div>
+        <div className="App">
+            <ChatPage />
+        </div>
     );
 }

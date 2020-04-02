@@ -4,6 +4,8 @@ import MessageList from '../MessageList';
 import './Messenger.css';
 
 export default function Messenger(props) {
+    const { user, messages} = props;
+
     return (
       <div className="messenger">
         {/* <Toolbar
@@ -26,11 +28,11 @@ export default function Messenger(props) {
         /> */}
 
         <div className="scrollable sidebar">
-          <ConversationList />
+          <ConversationList user={user} />
         </div>
 
         <div className="scrollable content">
-          <MessageList />
+          <MessageList user={user} messages={messages}/>
         </div>
       </div>
     );
