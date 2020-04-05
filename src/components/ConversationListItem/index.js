@@ -6,6 +6,8 @@ import person_add_outline from '../../assets/person-add-outline.svg';
 
 
 export default function ConversationListItem(props) {
+  const { handleClick } = props;
+
   useEffect(() => {
     shave('.conversation-snippet', 30);
   })
@@ -15,7 +17,7 @@ export default function ConversationListItem(props) {
     return (
       <div className="conversation-list-item">
 
-        <ToolbarButton key={`${id}_connected`}  icon={icon}/>
+        <ToolbarButton key={`${id}_connected`}  icon={icon} handleClick={handleClick} />
           <div className="conversation-info">
           <h1 className="conversation-title">{ name }</h1>
           <p className="conversation-snippet"> שעת התור { appointmentDateTime }</p>
