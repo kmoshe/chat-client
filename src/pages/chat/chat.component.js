@@ -7,6 +7,7 @@ import socket from "../../services/socket.service";
 export class ChatComponent extends React.Component {
 
     userType = process.env.REACT_APP_CLIENT_TYPE.trim();
+
     constructor() {
         super();
         console.log(this.userType);
@@ -89,7 +90,7 @@ export class ChatComponent extends React.Component {
         const { user, messages } = this.state;
         return (
             <div className="App">
-                <Messenger user={user} messages={messages} />
+                <Messenger user={user} />
             </div>
         );
     }

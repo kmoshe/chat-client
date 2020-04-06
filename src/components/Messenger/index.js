@@ -4,7 +4,7 @@ import MessageList from '../MessageList';
 import './Messenger.css';
 
 export default function Messenger(props) {
-    const { user, messages} = props;
+    const { user } = props;
 
     return (
       <div className="messenger">
@@ -32,7 +32,7 @@ export default function Messenger(props) {
         </div>
 
         <div className="scrollable content">
-          <MessageList user={user} messages={messages}/>
+          <MessageList user={user} />
         </div>
       </div>
     );
