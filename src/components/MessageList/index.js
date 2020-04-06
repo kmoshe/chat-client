@@ -77,6 +77,9 @@ export default function MessageList(props) {
             tempMessages.push(
                 <Message
                   key={i}
+
+
+
                   isMine={isMine}
                   startsSequence={startsSequence}
                   endsSequence={endsSequence}
