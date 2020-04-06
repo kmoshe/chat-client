@@ -24,11 +24,12 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "api:dev": "json-server --watch ./db/db.json --port 4000",
-    "api:patient": "json-server --watch ./db/db.json --port 4001",
+    "api:dev": "json-server --watch ./db/db.json --port 4001",
+    "api:patient": "json-server --watch ./db/db.json --port 4002",
     "client:dev": "react-scripts start",
-    "start:doctor": "set REACT_APP_CLIENT_TYPE=doctor && set PORT=3000 && npm-run-all --parallel client:dev api:dev",
-    "start:patient": "set REACT_APP_CLIENT_TYPE=patient && set PORT=3001 && npm-run-all --parallel client:dev api:patient",
+    "start:doctor": "set REACT_APP_CLIENT_TYPE=doctor && set PORT=3001 && set DEBUG=express:* && npm-run-all --parallel client:dev",
+    "start:patient": "set REACT_APP_CLIENT_TYPE=patient && set PORT=3002 && set DEBUG=express:* && npm-run-all --parallel client:dev",
+    "start:both": "npm-run-all --parallel start:doctor start:patient",
     "start:prod": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

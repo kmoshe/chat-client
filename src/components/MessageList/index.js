@@ -7,30 +7,91 @@ import moment from 'moment';
 import socket from '../../services/socket.service';
 import './MessageList.css';
 import logo_mac from '../../assets/logo_mac.png';
+import ChatMessage from "../../models/ChatMessage";
 
 
 export default function MessageList(props) {
-    const { user } = props;
+    const {user} = props;
     const MY_USER_ID = user.id;
-    let panel = null;
-    const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
-    const [rooms, setRooms] = useState([]);
-    const [initialized, setInitialized] = useState(false);
+    const [messages, setMessages] = useState([]);
 
+    useEffect(() => {
+        getMessages();
+    }, []);
+
+    const getMessages = () => {
+        let tempMessages = [
+            {
+                id: 1,
+                author: 'apple',
+                message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 2,
+                author: 'orange',
+                message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 3,
+                author: 'orange',
+                message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 4,
+                author: 'apple',
+                message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 5,
+                author: 'apple',
+                message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 6,
+                author: 'apple',
+                message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 7,
+                author: 'orange',
+                message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 8,
+                author: 'orange',
+                message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 9,
+                author: 'apple',
+                message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+                timestamp: new Date().getTime()
+            },
+            {
+                id: 10,
+                author: 'orange',
+                message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+                timestamp: new Date().getTime()
+            },
+        ]
+        setMessages([...messages, ...tempMessages])
+    }
 
     const addMessage = () => {
-        const msg = { id: 999, author: MY_USER_ID, message: message, timestamp: new Date().getTime() };
+        let msg = new ChatMessage(message, MY_USER_ID, new Date().getTime());
         socket.emit('chat message', msg);
     };
 
-
-
     const handleChange = (messageText) => setMessage(messageText);
-
-    const scrollChatToBottom = () => {
-        this.panel.scrollTo(0, this.panel.scrollHeight)
-    }
 
     const renderMessages = () => {
         let i = 0;
@@ -38,7 +99,6 @@ export default function MessageList(props) {
         let tempMessages = [];
 
         while (i < messageCount) {
-
             let previous = messages[i - 1];
             let current = messages[i];
             let next = messages[i + 1];
@@ -54,7 +114,7 @@ export default function MessageList(props) {
                 let previousMoment = moment(previous.timestamp);
                 let previousDuration = moment.duration(currentMoment.diff(previousMoment));
                 prevBySameAuthor = previous.author === current.author;
-        
+
                 if (prevBySameAuthor && previousDuration.as('hours') < 1) {
                     startsSequence = false;
                 }
@@ -76,15 +136,12 @@ export default function MessageList(props) {
 
             tempMessages.push(
                 <Message
-                  key={i}
-
-
-
-                  isMine={isMine}
-                  startsSequence={startsSequence}
-                  endsSequence={endsSequence}
-                  showTimestamp={showTimestamp}
-                  data={current}
+                    key={i}
+                    isMine={isMine}
+                    startsSequence={startsSequence}
+                    endsSequence={endsSequence}
+                    showTimestamp={showTimestamp}
+                    data={current}
                 />
             );
 
@@ -102,35 +159,35 @@ export default function MessageList(props) {
         return tempMessages;
     }
 
-    return(
-      <div className="message-list">
-        <Toolbar
-          title={ user.userType === 'doctor' ? "צ'אט עם חבר" : "צ'אט עם רופא" }
-          leftItems={[
+    return (
+        <div className="message-list">
+            <Toolbar
+                title={user.userType === 'doctor' ? "צ'אט עם חבר" : "צ'אט עם רופא"}
+                leftItems={[
 
-              <ToolbarButton key="video" icon="video" />,
-              <ToolbarButton key="phone" icon="phone" />,
-              <ToolbarButton key="info" icon="info-circle" />
-          ]}
-          rightItems={[
-              <img key="maccabi_logo" src={logo_mac} />
+                    <ToolbarButton key="video" icon="video"/>,
+                    <ToolbarButton key="phone" icon="phone"/>,
+                    <ToolbarButton key="info" icon="info-circle"/>
+                ]}
+                rightItems={[
+                    <img key="maccabi_logo" src={logo_mac}/>
+                ]}
+            />
 
+            <div className="message-list-container">{renderMessages()}</div>
 
-          ]}
-        />
-
-        <div className="message-list-container" innerRef={(panel) => { this.panel = panel; }}>{renderMessages()}</div>
-
-        <Compose
-            handleChange={handleChange}
-            leftItems={[
-            <ToolbarButton key="plane" icon="paper-plane" handleClick={addMessage} />,
-        ]} rightItems={[
-          <ToolbarButton key="photo" icon="camera" />,
-          <ToolbarButton key="image" icon="image" />,
-          <ToolbarButton key="audio" icon="microphone" />,
-          <ToolbarButton key="emoji" icon="smile" />
-        ]}/>
-      </div>
+            <Compose
+                handleChange={handleChange}
+                leftItems={[
+                    <ToolbarButton key="plane" icon="paper-plane" handleClick={addMessage}/>,
+                ]} rightItems={[
+                <ToolbarButton key="photo" icon="camera"/>,
+                <ToolbarButton key="image" icon="image"/>,
+                <ToolbarButton key="audio" icon="microphone"/>,
+                <ToolbarButton key="money" icon="credit-card"/>,
+                <ToolbarButton key="games" icon="gamepad"/>,
+                <ToolbarButton key="emoji" icon="smile"/>
+            ]}/>
+        </div>
     );
 }

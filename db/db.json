@@ -1,5 +1,5 @@
 {
-  "doctor": [
+  "doctors": [
     {
       "id": "999999999",
       "firstName": "אלכס",
@@ -13,6 +13,13 @@
       "lastName": "ידיד",
       "role": "1",
       "facilityId": "22222"
+    }
+  ],
+  "patients": [
+    {
+      "id": "111111111",
+      "firstName": "גבי",
+      "lastName": "קשני"
     }
   ],
   "appointments": [
