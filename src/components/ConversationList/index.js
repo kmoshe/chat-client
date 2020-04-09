@@ -66,7 +66,6 @@ export default function ConversationList(props) {
                 <ConversationListItem
                     key={conversation.name}
                     data={conversation}
-                    handleClick={handleClick}
                 />
             )}
         </div>
